@@ -1,0 +1,3 @@
+pagedown::chrome_print("guide_axis-example.Rmd", format = "png")
+
+# cropped outputted .png by hand...

@@ -1,0 +1,53 @@
+---
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      ratio: 13:10
+      highlightStyle: github
+      highlightLines: true
+      slideNumberFormat: ''
+---
+
+```{r setup, include=FALSE}
+options(htmltools.dir.version = FALSE)
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE, message = FALSE)
+```
+
+```{css, echo = FALSE}
+.remark-slide-content {
+  padding-top: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+  padding-bottom: 10px;
+}
+.remark-code, .remark-inline-code { font-family: 'Source Code Pro', 'Lucida Console', Monaco, monospace;
+                                    font-size: 60%;
+                                  }
+```
+
+```{r include = FALSE}
+library(tidyverse)
+library(flair)
+```
+
+.pull-left[
+```{r, echo = FALSE}
+flair::decorate_chunk("nest", eval = FALSE) %>% 
+  flair("guide = guide_axis(n.dodge = 2)", background = "Aquamarine")
+```
+]
+
+.pull-right[
+```{r nest, echo = FALSE}
+library(tidyverse)
+library(corrr)
+
+AmesHousing::make_ames() %>% 
+  select(contains(c("SF"))) %>% 
+  correlate() %>% 
+  rearrange(method = "HC") %>% 
+  rplot()+
+  scale_x_discrete(guide = guide_axis(n.dodge = 2))
+```
+]
